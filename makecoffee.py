@@ -11,9 +11,9 @@ import time
 import sys
 
 if len(sys.argv) > 1:
-	time = sys.argv[1]
+	t = sys.argv[1]
 else:
-	time = 600
+	t = 600
 
 signal = gpiozero.OutputDevice(18, active_high=True, initial_value=False)
 signal.on()
@@ -21,6 +21,6 @@ while time >= 0:
     sys.stdout.write(str(t) + "\r" )
     sys.stdout.flush()
     time.sleep(1)
-    time -=1
+    t -=1
 signal.off()
 
