@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
 # this program sends a signal to a relay
 # to turn on a coffee machine 
@@ -8,12 +8,19 @@
 
 import gpiozero
 import time
+import sys
 
-signal = gpiozero.OutputDevice(14, active_high=True, initial_value=False)
+if len(sys.argv) > 1:
+	time = sys.argv[1]
+else:
+	time = 600
+
+signal = gpiozero.OutputDevice(18, active_high=True, initial_value=False)
 signal.on()
-t = 600
-while t >= 0:
+while time >= 0:
+    sys.stdout.write(str(t) + "\r" )
+    sys.stdout.flush()
     time.sleep(1)
-    t -=1
+    time -=1
 signal.off()
 
